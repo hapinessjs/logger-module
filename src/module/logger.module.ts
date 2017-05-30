@@ -8,7 +8,7 @@ export const LOGGER_CONFIG = new InjectionToken('logger_config');
 export class LoggerConfig {}
 
 @HapinessModule({
-    version: '1.0.0-beta.5'
+    version: '1.0.0-beta.6'
 })
 export class LoggerModule implements OnRegister {
 
