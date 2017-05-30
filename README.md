@@ -2,17 +2,17 @@
 
 <div style="margin-bottom:20px;">
 <div style="line-height:60px">
-    <a href="https://travis-ci.org/hapinessjs/empty-module.svg?branch=master">
-        <img src="https://travis-ci.org/hapinessjs/empty-module.svg?branch=master" alt="build" />
+    <a href="https://travis-ci.org/hapinessjs/logger.svg?branch=master">
+        <img src="https://travis-ci.org/hapinessjs/logger.svg?branch=master" alt="build" />
     </a>
-    <a href="https://coveralls.io/github/hapinessjs/empty-module?branch=master">
-        <img src="https://coveralls.io/repos/github/hapinessjs/empty-module/badge.svg?branch=master" alt="coveralls" />
+    <a href="https://coveralls.io/github/hapinessjs/logger?branch=master">
+        <img src="https://coveralls.io/repos/github/hapinessjs/logger/badge.svg?branch=master" alt="coveralls" />
     </a>
-    <a href="https://david-dm.org/hapinessjs/empty-module">
-        <img src="https://david-dm.org/hapinessjs/empty-module.svg" alt="dependencies" />
+    <a href="https://david-dm.org/hapinessjs/logger">
+        <img src="https://david-dm.org/hapinessjs/logger.svg" alt="dependencies" />
     </a>
-    <a href="https://david-dm.org/hapinessjs/empty-module?type=dev">
-        <img src="https://david-dm.org/hapinessjs/empty-module/dev-status.svg" alt="devDependencies" />
+    <a href="https://david-dm.org/hapinessjs/logger?type=dev">
+        <img src="https://david-dm.org/hapinessjs/logger/dev-status.svg" alt="devDependencies" />
     </a>
 </div>
 <div>
@@ -31,39 +31,19 @@
 </div>
 </div>
 
-# Empty Module
+# Logger Module
 
-This package provides basics to create a new [Hapiness](https://github.com/hapinessjs/hapiness) module.
-
-Implementations of [Hapiness' route and service](https://github.com/hapinessjs/hapiness/blob/master/API.md) are done and related tests too.
+`Logger` module for the [Hapiness](https://github.com/hapinessjs/hapiness) framework based on [Good](https://github.com/hapijs/good) plugin.
 
 ## Table of contents
 
-* [Tests](#tests)
 * [Using your module inside Hapiness application](#using-your-module-inside-hapiness-application)
     * [Yarn or NPM it in your package.json](#yarn-or-npm-it-in-your-packagejson)
-    * [Import LoggerModule from the library](#import-mymodulemodule-from-the-library)
+    * [Import LoggerModule from the library](#import-loggermodule-from-the-library)
+* [Contributing](#contributing)
 * [Change History](#change-history)
 * [Maintainers](#maintainers)
 * [License](#license)
-
-### Tests
-
-To **run** your tests, just execute:
-
-```bash
-$ cd path/to/hapiness/module
-
-$ yarn run test
-
-or
-
-$ npm run test
-```
-
-**Coverage** result will be inside `./coverage/lcov-report` folder. Just open the folder in your browser to see the result.
-
-[Back to top](#table-of-contents)
 
 ## Using your module inside Hapiness application
 
@@ -123,6 +103,19 @@ Hapiness.bootstrap(HapinessModuleApp);
 
 
 ```
+
+[Back to top](#table-of-contents)
+
+## Contributing
+
+To set up your development environment:
+
+1. clone the repo to your workspace,
+2. in the shell `cd` to the main folder,
+3. hit `npm or yarn install`,
+4. run `npm or yarn run test`.
+    * It will lint the code and execute all tests. 
+    * The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
 
 [Back to top](#table-of-contents)
 
