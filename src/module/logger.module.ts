@@ -1,18 +1,17 @@
 import { HapinessModule, OnRegister, HttpServer, Optional,
-    CoreModuleWithProviders, InjectionToken, Inject, Injectable } from '@hapiness/core';
+    CoreModuleWithProviders, InjectionToken, Inject } from '@hapiness/core';
 import * as Good from 'good';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromPromise';
 
-export const LOGGER_CONFIG = new InjectionToken('logger_config');
-
-export class LoggerConfig {}
+const LOGGER_CONFIG = new InjectionToken('logger_config');
 
 @HapinessModule({
     version: '1.0.0-beta.6'
 })
 export class LoggerModule implements OnRegister {
 
-    static setConfig(config: LoggerConfig): CoreModuleWithProviders {
+    static setConfig(config: any): CoreModuleWithProviders {
         return {
             module: LoggerModule,
             providers: [{ provide: LOGGER_CONFIG, useValue: config }]
