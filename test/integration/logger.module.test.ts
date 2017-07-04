@@ -1,19 +1,20 @@
 /**
  * @see https://github.com/pana-cc/mocha-typescript
  */
-import { test, suite } from 'mocha-typescript';
+import { test, suite, only } from 'mocha-typescript';
 
 /**
  * @see http://unitjs.com/
  */
 import * as unit from 'unit.js';
+import { Hapiness, HapinessModule, Lib, OnStart } from '@hapiness/core';
+import { LoggerExt } from '../../src/module/logger.extension';
+import { LoggerModule } from '../../src/module/logger.module';
+import { LoggerService } from '../../src/module/logger.service';
 
-import { Hapiness, HapinessModule, HttpServer, Lib, OnStart } from '@hapiness/core';
-import { Observable } from 'rxjs/Observable';
+import { HttpServerExt } from '@hapiness/core/extensions/http-server';
 
-import { LoggerModule } from '../../src';
-
-@suite('- Integration LoggerModuleTest file')
+@suite('Integration - LoggerModuleTest')
 class LoggerModuleTest {
     /**
      * Function executed before the suite
@@ -41,8 +42,8 @@ class LoggerModuleTest {
      */
     after() {}
 
-    @test('- Test logger without config')
-    testWithoutConfig(done) {
+    @test('- Test logger without extension')
+    test1(done) {
         let captured = '';
         const unhook_intercept = require('intercept-stdout')(str => {
             captured += str;
@@ -50,34 +51,24 @@ class LoggerModuleTest {
 
         @HapinessModule({
             version: '1.0.0',
-            options: {
-                host: '0.0.0.0',
-                port: 4443
-            },
-            imports: [
-                LoggerModule
-            ]
+            imports: [ LoggerModule ]
         })
         class LoggerModuleTest implements OnStart {
-            constructor(private server: HttpServer) {}
+            constructor(private logger: LoggerService) {}
 
             onStart(): void {
-
-                this.server.instance.log(null, 'my log');
-                Hapiness.kill().subscribe(__ => {
-                    unhook_intercept();
-                    unit.string(captured).hasValue('data: my log');
-                    done();
-                });
-
+                this.logger.info('test_log', {toto: true});
+                unhook_intercept();
+                unit.string(captured).hasValue('test_log { toto: true }');
+                done();
             }
         }
 
         Hapiness.bootstrap(LoggerModuleTest);
     }
 
-    @test('- Test logger with config')
-    testWithConfig(done) {
+    @test('- Test logger with extension')
+    test2(done) {
         let captured = '';
         const unhook_intercept = require('intercept-stdout')(str => {
             captured += str;
@@ -85,47 +76,23 @@ class LoggerModuleTest {
 
         @HapinessModule({
             version: '1.0.0',
-            options: {
-                host: '0.0.0.0',
-                port: 4443
-            },
-            imports: [
-                LoggerModule.setConfig({
-                    reporters: {
-                        console: [
-                            {
-                                module: 'good-squeeze',
-                                name: 'Squeeze',
-                                args: [{
-                                    log: 'warn',
-                                    response: '*'
-                                }]
-                            }, {
-                                module: 'good-console',
-                                args: [{
-                                    format: 'YYYY-MM-DD HH:mm:ss.SSS'
-                                }]
-                            }, 'stdout'
-                        ]
-                    }
-                })
-            ]
+            imports: [ LoggerModule ]
         })
         class LoggerModuleTest implements OnStart {
-            constructor(private server: HttpServer) {}
+            constructor(private logger: LoggerService) {}
 
             onStart(): void {
-
-                this.server.instance.log(['warn'], 'my log');
-                Hapiness.kill().subscribe(__ => {
-                    unhook_intercept();
-                    unit.string(captured).hasValue('data: my log');
-                    done();
-                });
-
+                this.logger.info('test_log', {toto: true});
+                unhook_intercept();
+                unit.string(captured).hasValue('test_log { toto: true }');
+                done();
             }
         }
 
-        Hapiness.bootstrap(LoggerModuleTest);
+        Hapiness.bootstrap(LoggerModuleTest,
+            [
+                LoggerExt.setConfig({ logger: console })
+            ]
+        ).catch(_ => /* console.error(_) */{});
     }
 }
