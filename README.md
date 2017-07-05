@@ -33,7 +33,7 @@
 
 # Logger Module
 
-`Logger` module for the [Hapiness](https://github.com/hapinessjs/hapiness) framework based on [Good](https://github.com/hapijs/good) plugin.
+`Logger` module for the [Hapiness](https://github.com/hapinessjs/hapiness) framework.
 
 ## Table of contents
 
