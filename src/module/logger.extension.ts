@@ -1,4 +1,4 @@
-import { ExtensionWithConfig, Extension, OnExtensionLoad, CoreModule } from '@hapiness/core/core';
+import { ExtensionWithConfig, Extension, CoreModule } from '@hapiness/core';
 import { Observable } from 'rxjs/Observable';
 import * as Debug from 'debug';
 const debug = Debug('hapiness:extension:logger');
