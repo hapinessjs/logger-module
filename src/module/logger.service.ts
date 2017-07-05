@@ -1,12 +1,7 @@
-import { Extension, ExtensionWithConfig, CoreModule, Optional, Inject, Injectable } from '@hapiness/core';
+import { Optional, Inject, Injectable } from '@hapiness/core';
 import { LoggerExt } from './logger.extension';
-import { Observable } from 'rxjs/Observable';
 import * as Debug from 'debug';
 const debug = Debug('hapiness:extension:logger');
-
-export interface LoggerConfig {
-    logger: any
-}
 
 @Injectable()
 export class LoggerService {
