@@ -5,7 +5,7 @@ import { LoggerService } from './logger.service';
 const LOGGER_CONFIG = new InjectionToken('logger_config');
 
 @HapinessModule({
-    version: '1.0.0',
+    version: '1.0.0-rc.3',
     exports: [ LoggerService ]
 })
 export class LoggerModule {}
