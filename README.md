@@ -59,8 +59,8 @@ $ yarn add @hapiness/logger
     
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-beta.6",
-    "@hapiness/logger": "^1.0.0-beta.6",
+    "@hapiness/core": "^1.0.0-rc.3",
+    "@hapiness/logger": "^1.0.0-rc.3",
     //...
 }
 //...
@@ -73,18 +73,14 @@ import { Hapiness, HapinessModule, HttpServer, OnGet } from '@hapiness/core';
 import { LoggerModule } from '@hapiness/logger';
 
 @HapinessModule({
-    version: '1.0.0',
-    options: {
-        host: '0.0.0.0',
-        port: 4443
-    },
+    version: '1.0.0'
     imports: [
-        LoggerModule.setConfig({ ... })
+        LoggerModule
     ]
 })
 class HapinessModuleApp {
-    constructor(private server: HttpServer) {
-        this.server.instance.log(['tag'], 'my data log');
+    constructor(private logger: LoggerService) {
+        this.logger.info('my data log');
     }
 }
 
@@ -93,14 +89,18 @@ class HapinessModuleApp {
     path: '/test'
 })
 class MyRoute implements OnGet {
+    constructor(private logger: LoggerService) {}
     onGet(request, reply) {
-        request.log(['tag'], 'my data log');
+        this.logger.warn('my data log');
         reply('test');
     }
 }
 
 Hapiness.bootstrap(HapinessModuleApp);
 
+// Define your logger
+
+Hapiness.bootstrap(HapinessModuleApp, [ LoggerExt.setConfig({ logger: myLogger }) ]);
 
 ```
 
@@ -121,6 +121,10 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.3 (2017-07-04)
+    * Logger extension
+    * Logger provider
+    * Documentation
 * v1.0.0-beta.6 (2017-05-26)
     * Create LoggerModule
     * Documentation
