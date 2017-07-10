@@ -1,18 +1,14 @@
 /**
  * @see https://github.com/pana-cc/mocha-typescript
  */
-import { test, suite, only } from 'mocha-typescript';
+import { test, suite } from 'mocha-typescript';
 
 /**
  * @see http://unitjs.com/
  */
 import * as unit from 'unit.js';
-import { Hapiness, HapinessModule, Lib, OnStart } from '@hapiness/core';
-import { LoggerExt } from '../../src/module/logger.extension';
-import { LoggerModule } from '../../src/module/logger.module';
-import { LoggerService } from '../../src/module/logger.service';
-
-import { HttpServerExt } from '@hapiness/core/extensions/http-server';
+import { Hapiness, HapinessModule, OnStart } from '@hapiness/core';
+import { LoggerExt, LoggerModule, LoggerService } from '../../src/';
 
 @suite('Integration - LoggerModuleTest')
 class LoggerModuleTest {
@@ -53,7 +49,7 @@ class LoggerModuleTest {
             version: '1.0.0',
             imports: [ LoggerModule ]
         })
-        class LoggerModuleTest implements OnStart {
+        class LMTest implements OnStart {
             constructor(private logger: LoggerService) {}
 
             onStart(): void {
@@ -64,7 +60,7 @@ class LoggerModuleTest {
             }
         }
 
-        Hapiness.bootstrap(LoggerModuleTest);
+        Hapiness.bootstrap(LMTest);
     }
 
     @test('- Test logger with extension')
@@ -78,7 +74,7 @@ class LoggerModuleTest {
             version: '1.0.0',
             imports: [ LoggerModule ]
         })
-        class LoggerModuleTest implements OnStart {
+        class LMTest implements OnStart {
             constructor(private logger: LoggerService) {}
 
             onStart(): void {
@@ -89,7 +85,7 @@ class LoggerModuleTest {
             }
         }
 
-        Hapiness.bootstrap(LoggerModuleTest,
+        Hapiness.bootstrap(LMTest,
             [
                 LoggerExt.setConfig({ logger: console })
             ]
