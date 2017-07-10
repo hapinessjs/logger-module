@@ -1,8 +1,6 @@
 import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
-import { Hapiness, HapinessModule, Lib, OnStart } from '@hapiness/core';
-import { LoggerModule } from '../../src/module/logger.module';
-import { LoggerService } from '../../src/module/logger.service';
+import { LoggerService } from '../../src';
 
 @suite('Unit - LoggerServiceTest')
 class LoggerServiceTest {
@@ -13,7 +11,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             trace: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.trace(...data);
 
@@ -25,7 +23,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             debug: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.debug(...data);
 
@@ -37,7 +35,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             info: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.info(...data);
 
@@ -49,7 +47,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             warn: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.warn(...data);
 
@@ -61,7 +59,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             error: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.error(...data);
 
@@ -73,7 +71,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             fatal: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.fatal(...data);
 
@@ -85,7 +83,7 @@ class LoggerServiceTest {
         const data = ['test', {val: true}];
         const logger = {
             error: (...args) => unit.array(args).is(data)
-        }
+        };
         const service = new LoggerService(logger);
         service.fatal(...data);
 

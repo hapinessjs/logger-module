@@ -59,8 +59,8 @@ $ yarn add @hapiness/logger
     
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.3",
-    "@hapiness/logger": "^1.0.0-rc.3",
+    "@hapiness/core": "^1.0.0-rc.4",
+    "@hapiness/logger": "^1.0.0-rc.4",
     //...
 }
 //...
@@ -73,7 +73,7 @@ import { Hapiness, HapinessModule, HttpServer, OnGet } from '@hapiness/core';
 import { LoggerModule } from '@hapiness/logger';
 
 @HapinessModule({
-    version: '1.0.0'
+    version: '1.0.0',
     imports: [
         LoggerModule
     ]
@@ -121,6 +121,9 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.4 (2017-07-10)
+    * Latest packages' versions.
+    * Module version related to core version.
 * v1.0.0-rc.3 (2017-07-04)
     * Logger extension
     * Logger provider
