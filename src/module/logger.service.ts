@@ -19,7 +19,7 @@ export class LoggerService {
      * @param  {} ...args
      */
     public trace(...args) {
-        this.logger.trace.call(null, ...args);
+        this.logger.trace.call(this.logger, ...args);
     }
 
     /**
@@ -28,7 +28,7 @@ export class LoggerService {
      * @param  {} ...args
      */
     public debug(...args) {
-        this.logger.debug.call(null, ...args);
+        this.logger.debug.call(this.logger, ...args);
     }
 
     /**
@@ -37,7 +37,7 @@ export class LoggerService {
      * @param  {} ...args
      */
     public info(...args) {
-        this.logger.info.call(null, ...args);
+        this.logger.info.call(this.logger, ...args);
     }
 
     /**
@@ -47,7 +47,7 @@ export class LoggerService {
      * @param  {} ...args
      */
     public warn(...args) {
-        this.logger.warn.call(null, ...args);
+        this.logger.warn.call(this.logger, ...args);
     }
 
     /**
@@ -57,7 +57,7 @@ export class LoggerService {
      * @param  {} ...args
      */
     public error(...args) {
-        this.logger.error.call(null, ...args);
+        this.logger.error.call(this.logger, ...args);
     }
 
     /**
@@ -68,10 +68,10 @@ export class LoggerService {
      */
     public fatal(...args) {
         if (!this.logger.fatal) {
-            this.logger.error.call(null, ...args);
+            this.logger.error.call(this.logger, ...args);
             return;
         }
-        this.logger.fatal.call(null, ...args);
+        this.logger.fatal.call(this.logger, ...args);
     }
 
 }

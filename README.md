@@ -122,6 +122,7 @@ To set up your development environment:
 * v1.0.0-rc.6 (2017-07-17)
     * Latest packages' versions.
     * Update dependencies declarations.
+    * Force call this to logger instance.
 * v1.0.0-rc.4 (2017-07-10)
     * Latest packages' versions.
     * Module version related to core version.
