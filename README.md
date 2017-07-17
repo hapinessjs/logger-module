@@ -59,8 +59,8 @@ $ yarn add @hapiness/logger
     
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.4",
-    "@hapiness/logger": "^1.0.0-rc.4",
+    "@hapiness/core": "^1.0.0-rc.6",
+    "@hapiness/logger": "^1.0.0-rc.6",
     //...
 }
 //...
@@ -70,7 +70,7 @@ $ yarn add @hapiness/logger
 
 ```javascript
 import { Hapiness, HapinessModule, HttpServer, OnGet } from '@hapiness/core';
-import { LoggerModule } from '@hapiness/logger';
+import { LoggerModule, LoggerService } from '@hapiness/logger';
 
 @HapinessModule({
     version: '1.0.0',
@@ -79,8 +79,8 @@ import { LoggerModule } from '@hapiness/logger';
     ]
 })
 class HapinessModuleApp {
-    constructor(private logger: LoggerService) {
-        this.logger.info('my data log');
+    constructor(private _logger: LoggerService) {
+        this._logger.info('my data log');
     }
 }
 
@@ -89,14 +89,12 @@ class HapinessModuleApp {
     path: '/test'
 })
 class MyRoute implements OnGet {
-    constructor(private logger: LoggerService) {}
+    constructor(private _logger: LoggerService) {}
     onGet(request, reply) {
-        this.logger.warn('my data log');
+        this._logger.warn('my data log');
         reply('test');
     }
 }
-
-Hapiness.bootstrap(HapinessModuleApp);
 
 // Define your logger
 
@@ -121,6 +119,9 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.6 (2017-07-17)
+    * Latest packages' versions.
+    * Update dependencies declarations.
 * v1.0.0-rc.4 (2017-07-10)
     * Latest packages' versions.
     * Module version related to core version.
