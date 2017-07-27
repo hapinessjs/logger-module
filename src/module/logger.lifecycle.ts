@@ -16,8 +16,16 @@ export class AccessLog implements OnEvent {
 
     onEvent(request: Request, reply: ReplyWithContinue) {
         const res = request.raw.res;
+        const data = {
+            method: request.method,
+            path: request.path,
+            query: request.query,
+            params: request.params,
+            statusCode: res.statusCode
+        };
         this.logger.info(
-            `${this.getMethod(request.method)} ${request.path} ${JSON.stringify(request.query)} ${this.getStatus(res.statusCode)}`
+            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(res.statusCode)}`,
+            data
         );
         reply.continue();
     }
