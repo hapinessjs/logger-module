@@ -8,7 +8,7 @@ export class LoggerService {
 
     private logger;
 
-    constructor(@Optional() @Inject(LoggerExt) loggerExt) {
+    constructor(@Optional() @Inject(LoggerExt) loggerExt?) {
         this.logger = loggerExt ? loggerExt : console;
     }
 

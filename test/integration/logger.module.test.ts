@@ -7,7 +7,7 @@ import { test, suite } from 'mocha-typescript';
  * @see http://unitjs.com/
  */
 import * as unit from 'unit.js';
-import { Hapiness, HapinessModule, OnStart } from '@hapiness/core';
+import { Hapiness, HapinessModule, OnStart, Route, OnGet, Inject, HttpServerExt, Server } from '@hapiness/core';
 import { LoggerExt, LoggerModule, LoggerService } from '../../src/';
 
 @suite('Integration - LoggerModuleTest')
@@ -90,5 +90,49 @@ class LoggerModuleTest {
                 LoggerExt.setConfig({ logger: console })
             ]
         ).catch(_ => /* console.error(_) */{});
+    }
+
+    @test('- Test access log')
+    test3(done) {
+        let captured = '';
+        const unhook_intercept = require('intercept-stdout')(str => {
+            captured += str;
+        });
+
+        @Route({
+            method: 'get',
+            path: '/log'
+        })
+        class RouteTest implements OnGet {
+            onGet(req, repl) {
+                repl('ok');
+            }
+        }
+
+        @HapinessModule({
+            version: '1.0.0',
+            declarations: [ RouteTest ],
+            imports: [ LoggerModule ]
+        })
+        class LMTest implements OnStart {
+            constructor(@Inject(HttpServerExt) private server: Server) {}
+
+            onStart(): void {
+                this.server.inject('/log', res => {
+                    unhook_intercept();
+                    unit
+                        .string(captured)
+                        .match(/\/log/i);
+                    this.server.stop().then(_ => done());
+                });
+            }
+        }
+
+        Hapiness.bootstrap(LMTest,
+            [
+                HttpServerExt.setConfig({ host: 'localhost', port: 4444 }),
+                LoggerExt.setConfig({ logger: console })
+            ]
+        )
     }
 }
