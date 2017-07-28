@@ -60,7 +60,7 @@ $ yarn add @hapiness/logger
 ```javascript
 "dependencies": {
     "@hapiness/core": "^1.0.0-rc.6",
-    "@hapiness/logger": "^1.0.0-rc.6",
+    "@hapiness/logger": "^1.0.0-rc.7",
     //...
 }
 //...
@@ -136,6 +136,8 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.7 (2017-07-28)
+    * Access logs
 * v1.0.0-rc.6 (2017-07-17)
     * Latest packages' versions.
     * Update dependencies declarations.
