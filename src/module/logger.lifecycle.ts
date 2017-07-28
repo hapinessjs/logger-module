@@ -36,8 +36,7 @@ export class AccessLogs implements OnEvent {
             statusCode: res.statusCode
         };
         this.logger.info(
-            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(res.statusCode)}`,
-            data
+            data, `${this.getMethod(request.method)} ${request.path} ${this.getStatus(res.statusCode)}`
         );
         reply.continue();
     }
