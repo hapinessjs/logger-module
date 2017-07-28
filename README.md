@@ -102,6 +102,23 @@ Hapiness.bootstrap(HapinessModuleApp, [ LoggerExt.setConfig({ logger: myLogger }
 
 ```
 
+### Access logs
+
+If HttpServerExt is loaded, the LoggerModule will inject an AccessLogs component.
+To desactivate the access logs, provide a module's config:
+```javascript
+@HapinessModule({
+    version: '1.0.0',
+    imports: [
+        LoggerModule.setConfig({ accessLogs: false })
+    ]
+})
+class HapinessModuleApp {
+    ...
+}
+```
+
+
 [Back to top](#table-of-contents)
 
 ## Contributing

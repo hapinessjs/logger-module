@@ -1,20 +1,32 @@
 import {
+    Optional,
+    Inject,
     Lifecycle,
     OnEvent,
     Request,
     ReplyWithContinue
 } from '@hapiness/core';
 import { LoggerService } from './logger.service';
+import { LOGGER_CONFIG, LoggerConfig } from './logger.config';
 import * as Chalk from 'chalk';
 
 @Lifecycle({
     event: 'onPreResponse'
 })
-export class AccessLog implements OnEvent {
+export class AccessLogs implements OnEvent {
 
-    constructor(private logger: LoggerService) {}
+    constructor(
+        @Optional() @Inject(LOGGER_CONFIG) private config: LoggerConfig,
+        private logger: LoggerService
+    ) {
+        this.config = this.config || { accessLogs: true };
+    }
 
     onEvent(request: Request, reply: ReplyWithContinue) {
+        if (!this.config.accessLogs) {
+            reply.continue();
+            return;
+        }
         const res = request.raw.res;
         const data = {
             method: request.method,
