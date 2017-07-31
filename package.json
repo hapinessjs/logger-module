@@ -1,6 +1,6 @@
 {
   "name": "@hapiness/logger",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.6.1",
   "description": "Hapiness module for logging",
   "main": "index.js",
   "types": "index.d.ts",

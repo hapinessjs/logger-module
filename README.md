@@ -50,17 +50,17 @@
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/logger
+$ npm install --save @hapiness/core @hapiness/logger
 
 or
 
-$ yarn add @hapiness/logger
+$ yarn add @hapiness/core @hapiness/logger
 ```
     
 ```javascript
 "dependencies": {
     "@hapiness/core": "^1.0.0-rc.6",
-    "@hapiness/logger": "^1.0.0-rc.7",
+    "@hapiness/logger": "^1.0.0-rc.6.1",
     //...
 }
 //...
@@ -136,7 +136,7 @@ To set up your development environment:
 
 ## Change History
 
-* v1.0.0-rc.7 (2017-07-28)
+* v1.0.0-rc.6.1 (2017-07-31)
     * Access logs
 * v1.0.0-rc.6 (2017-07-17)
     * Latest packages' versions.
