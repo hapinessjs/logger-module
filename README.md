@@ -50,17 +50,17 @@
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/logger
+$ npm install --save @hapiness/core @hapiness/logger
 
 or
 
-$ yarn add @hapiness/logger
+$ yarn add @hapiness/core @hapiness/logger
 ```
     
 ```javascript
 "dependencies": {
     "@hapiness/core": "^1.0.0-rc.6",
-    "@hapiness/logger": "^1.0.0-rc.6",
+    "@hapiness/logger": "^1.0.0-rc.6.1",
     //...
 }
 //...
@@ -102,6 +102,23 @@ Hapiness.bootstrap(HapinessModuleApp, [ LoggerExt.setConfig({ logger: myLogger }
 
 ```
 
+### Access logs
+
+If HttpServerExt is loaded, the LoggerModule will inject an AccessLogs component.
+To desactivate the access logs, provide a module's config:
+```javascript
+@HapinessModule({
+    version: '1.0.0',
+    imports: [
+        LoggerModule.setConfig({ accessLogs: false })
+    ]
+})
+class HapinessModuleApp {
+    ...
+}
+```
+
+
 [Back to top](#table-of-contents)
 
 ## Contributing
@@ -119,6 +136,8 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.6.1 (2017-07-31)
+    * Access logs
 * v1.0.0-rc.6 (2017-07-17)
     * Latest packages' versions.
     * Update dependencies declarations.
