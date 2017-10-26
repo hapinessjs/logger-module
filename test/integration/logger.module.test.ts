@@ -111,6 +111,50 @@ class LoggerModuleTest {
         )
     }
 
+    @test('- Test access log - error')
+    test31(done) {
+        let captured = '';
+        const unhook_intercept = require('intercept-stdout')(str => {
+            captured += str;
+        });
+
+        @Route({
+            method: 'get',
+            path: '/log'
+        })
+        class RouteTest implements OnGet {
+            onGet(req, repl) {
+                repl(new Error('Oops'));
+            }
+        }
+
+        @HapinessModule({
+            version: '1.0.0',
+            declarations: [ RouteTest ],
+            imports: [ LoggerModule ]
+        })
+        class LMTest implements OnStart {
+            constructor(@Inject(HttpServerExt) private server: Server) {}
+
+            onStart(): void {
+                this.server.inject('/log', res => {
+                    unhook_intercept();
+                    unit
+                        .string(captured)
+                        .match(/\/log \u001b\[31m500/i);
+                    this.server.stop().then(_ => done());
+                });
+            }
+        }
+
+        Hapiness.bootstrap(LMTest,
+            [
+                HttpServerExt.setConfig({ host: 'localhost', port: 4444 }),
+                LoggerExt.setConfig({ logger: console })
+            ]
+        )
+    }
+
     @test('- Test log without access log')
     test4(done) {
         let captured = '';
@@ -138,9 +182,7 @@ class LoggerModuleTest {
 
             onStart(): void {
                 this.server.inject('/log', res => {
-                    console.log('DDDDDDD');
                     unhook_intercept();
-                    console.log('======>', captured);
                     unit
                         .string(captured)
                         .notMatch(/\/log \u001b\[32m200/i);
