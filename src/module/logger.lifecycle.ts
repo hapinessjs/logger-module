@@ -8,17 +8,15 @@ import {
 } from '@hapiness/core';
 import { LoggerService } from './logger.service';
 import { LOGGER_CONFIG, LoggerConfig } from './logger.config';
-import * as Chalk from 'chalk';
+import { default as Chalk } from 'chalk';
 
 @Lifecycle({
     event: 'onPreResponse'
 })
 export class AccessLogs implements OnEvent {
 
-    constructor(
-        @Optional() @Inject(LOGGER_CONFIG) private config: LoggerConfig,
-        private logger: LoggerService
-    ) {
+    constructor(@Optional() @Inject(LOGGER_CONFIG) private config: LoggerConfig,
+                private logger: LoggerService) {
         this.config = this.config || { accessLogs: true };
     }
 
@@ -27,16 +25,16 @@ export class AccessLogs implements OnEvent {
             reply.continue();
             return;
         }
-        const res = request.raw.res;
+        const statusCode = request.response.statusCode || request.response.output.statusCode;
         const data = {
             method: request.method,
             path: request.path,
             query: request.query,
             params: request.params,
-            statusCode: res.statusCode
+            statusCode: statusCode
         };
         this.logger.info(
-            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(res.statusCode)}`,
+            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(statusCode)}`,
             data
         );
         reply.continue();
