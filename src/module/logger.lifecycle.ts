@@ -27,16 +27,16 @@ export class AccessLogs implements OnEvent {
             reply.continue();
             return;
         }
-        const res = request.raw.res;
+        const statusCode = request.response.statusCode || request.response.output.statusCode;
         const data = {
             method: request.method,
             path: request.path,
             query: request.query,
             params: request.params,
-            statusCode: res.statusCode
+            statusCode: statusCode
         };
         this.logger.info(
-            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(res.statusCode)}`,
+            `${this.getMethod(request.method)} ${request.path} ${this.getStatus(statusCode)}`,
             data
         );
         reply.continue();
