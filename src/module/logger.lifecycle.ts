@@ -8,17 +8,15 @@ import {
 } from '@hapiness/core';
 import { LoggerService } from './logger.service';
 import { LOGGER_CONFIG, LoggerConfig } from './logger.config';
-import * as Chalk from 'chalk';
+import { default as Chalk } from 'chalk';
 
 @Lifecycle({
     event: 'onPreResponse'
 })
 export class AccessLogs implements OnEvent {
 
-    constructor(
-        @Optional() @Inject(LOGGER_CONFIG) private config: LoggerConfig,
-        private logger: LoggerService
-    ) {
+    constructor(@Optional() @Inject(LOGGER_CONFIG) private config: LoggerConfig,
+                private logger: LoggerService) {
         this.config = this.config || { accessLogs: true };
     }
 
