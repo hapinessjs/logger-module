@@ -50,17 +50,18 @@
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/core @hapiness/logger
+$ npm install --save @hapiness/core @hapiness/logger rxjs
 
 or
 
-$ yarn add @hapiness/core @hapiness/logger
+$ yarn add @hapiness/core @hapiness/logger rxjs
 ```
     
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.6",
-    "@hapiness/logger": "^1.0.0-rc.6.1",
+    "@hapiness/core": "^1.1.1",
+    "@hapiness/logger": "^1.0.0",
+    "rxjs": "^5.5.2",
     //...
 }
 //...
@@ -136,31 +137,20 @@ To set up your development environment:
 
 ## Change History
 
-* v1.0.0-rc.6.1 (2017-07-31)
-    * Access logs
-* v1.0.0-rc.6 (2017-07-17)
-    * Latest packages' versions.
-    * Update dependencies declarations.
-    * Force call this to logger instance.
-* v1.0.0-rc.4 (2017-07-10)
-    * Latest packages' versions.
-    * Module version related to core version.
-* v1.0.0-rc.3 (2017-07-04)
+* v1.0.0 (2017-10-26)
+    * Create LoggerModule
     * Logger extension
     * Logger provider
+    * Access logs
     * Documentation
-* v1.0.0-beta.6 (2017-05-26)
-    * Create LoggerModule
-    * Documentation
-    * Module version related to core version
-    
+
 [Back to top](#table-of-contents)
 
 ## Maintainers
 
 <table>
     <tr>
-        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="https://tadaweb.com/images/tadaweb/logo.png" width="117" alt="tadaweb" /></a></td>
+        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="http://bit.ly/2xHQkTi" width="117" alt="tadaweb" /></a></td>
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/Juneil"><img src="https://avatars3.githubusercontent.com/u/6546204?v=3&s=117" width="117"/></a></td>
