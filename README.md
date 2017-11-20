@@ -59,8 +59,8 @@ $ yarn add @hapiness/core @hapiness/logger rxjs
     
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.1.1",
-    "@hapiness/logger": "^1.0.0",
+    "@hapiness/core": "^1.2.2",
+    "@hapiness/logger": "^1.1.0",
     "rxjs": "^5.5.2",
     //...
 }
@@ -137,6 +137,10 @@ To set up your development environment:
 
 ## Change History
 
+* v1.1.0 (2017-11-20)
+    * Latest packages' versions.
+    * Documentation.
+    * Change packaging process.
 * v1.0.0 (2017-10-26)
     * Create LoggerModule
     * Logger extension
