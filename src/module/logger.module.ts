@@ -4,7 +4,7 @@ import { AccessLogs } from './logger.lifecycle';
 import { LOGGER_CONFIG, LoggerConfig } from './logger.config';
 
 @HapinessModule({
-    version: '1.0.0-rc.7',
+    version: '1.1.0',
     declarations: [ AccessLogs ],
     providers: [ LoggerService ],
     exports: [ LoggerService ]
